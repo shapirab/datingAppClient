@@ -12,21 +12,14 @@ import { UserDto } from './models/userDto';
 })
 export class AppComponent implements OnInit{
   title = 'client';
-  users: User[] | undefined;
-  url = 'https://localhost:7175/api/users';
-  constructor(private http: HttpClient, private accountService : AcountService){}
+  
+  constructor( private accountService : AcountService){}
 
   ngOnInit(): void {
-    this.getUsers();
     this.setCurrentUser();
   }
 
-  getUsers(){
-    this.http.get(this.url).subscribe({
-      next: res => this.users = res as User[],
-      error: err => console.log(err)
-    });
-  }
+
 
   setCurrentUser(){
     let userString = localStorage.getItem('user');

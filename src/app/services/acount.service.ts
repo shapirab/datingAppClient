@@ -28,6 +28,19 @@ export class AcountService {
     );
   }
 
+  register(model:any){
+    return this.http.post<UserDto>(this.baseUrl + 'acount/register', model).pipe(
+      map(user => {
+        if(user){
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+        //if we want to see the user returned to us and we are using map we need to be explicit
+        return user;
+      })
+    );
+  }
+
   setCurrentUser(user: UserDto){
     this.currentUserSource.next(user);
   }
