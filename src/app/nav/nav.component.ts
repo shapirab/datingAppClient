@@ -3,6 +3,8 @@ import { AcountService } from '../services/acount.service';
 import { error } from 'console';
 import { Observable, of } from 'rxjs';
 import { UserDto } from '../models/userDto';
+import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +16,8 @@ export class NavComponent implements OnInit {
   //loggedIn = false;
   //If we use the account service directly in the html we don't need this observable
   //currentUser$: Observable<UserDto | null> = of(null);//the of is Observable of type...
-  constructor(public accountService: AcountService) { }
+  constructor(public accountService: AcountService,
+    private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     //this.getCurrentUser();
@@ -37,16 +40,18 @@ export class NavComponent implements OnInit {
   login(){
     this.accountService.login(this.model).subscribe({
       next: response => {
-        console.log(response);
+        this.router.navigateByUrl('/members');
         //this.loggedIn = true;
       },
-      error: err => console.log(err)
+      error: err => this.toastr.error(err.error)
+
     });
   }
 
   logout(){
     //this.loggedIn = false;
     this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 
 }

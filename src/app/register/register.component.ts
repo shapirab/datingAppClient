@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user';
 import { AcountService } from '../services/acount.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { AcountService } from '../services/acount.service';
 export class RegisterComponent implements OnInit {
   @Output() isRegisterMode = new EventEmitter<boolean>();
   model: any = {};
-  constructor(private accountService: AcountService) { }
+  constructor(private accountService: AcountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
         console.log(response);
         this.cancel();
       },
-      error: err => console.log(err)
+      error: err => this.toastr.error(err.error)
     });
   }
 
