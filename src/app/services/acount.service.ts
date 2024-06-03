@@ -23,6 +23,7 @@ export class AcountService {
         if(user){
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
+          console.log(user)
         }
       })
     );
@@ -34,6 +35,7 @@ export class AcountService {
         if(user){
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
+
         }
         //if we want to see the user returned to us and we are using map we need to be explicit
         return user;

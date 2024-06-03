@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Dating App</a>
 
@@ -19,20 +19,22 @@
       </ul>
 
       <!-- Instead of using loggedIn in the ngIf -->
-      <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
-        <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome user</a>
+      <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>
+          Welcome {{user.userName | titlecase}}</a>
         <div class="dropdown-menu" *dropdownMenu>
           <a class="dropdown-item">Edit Profile</a>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </div>
 
-      <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+      <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="d-flex"
+      (ngSubmit)="login()" autocomplete="off">
         <input class="form-control me-2"
         type="text" placeholder="Username" name="Username" [(ngModel)]="model.Username">
         <input class="form-control me-2"
         type="password" placeholder="Password" name="Password" [(ngModel)]="model.Password">
-        <button class="btn btn-outline-success" type="submit">Login</button>
+        <button class="btn btn-success" type="submit">Login</button>
       </form>
     </div>
 
