@@ -1,0 +1,14 @@
+<h4>Internal Server Error</h4>
+<div *ngIf="error">
+  <h5 class="text-danger">Error: {{error.message}}</h5>
+  <p class="font-weight-bold">Note: A server error occures at the API, not in Angular</p>
+  <p>What to do next?</p>
+  <ol>
+    <li>Check Devtools in chrome: check the network request in the network tab</li>
+    <li>Examin the URL of the failing request</li>
+    <li>Reproduce the failing request in Postman</li>
+  </ol>
+  <p class="font-weight-bold">Check the Stack trace bellow: see the first two lines for the exact
+    line of code that causes the issue</p>
+    <code class="mt-5" style="background-color: whitesmoke;">{{error.details}}</code>
+</div>
