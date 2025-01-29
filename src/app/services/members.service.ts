@@ -15,24 +15,31 @@ export class MembersService {
   constructor(private http: HttpClient, private accountService: AcountService){}
 
   getMembers(): Observable<Member[]>{
-    return this.http.get<Member[]>(this.baseUrl + 'users', this.getHttpOptions());
+    return this.http.get<Member[]>(this.baseUrl + 'users');
   }
 
   getMember(username:string):Observable<Member>{
-    return this.http.get<Member>(`${this.baseUrl}users/${username}`, this.getHttpOptions());
+    return this.http.get<Member>(`${this.baseUrl}users/${username}`);
   }
+  // getMembers(): Observable<Member[]>{
+  //   return this.http.get<Member[]>(this.baseUrl + 'users', this.getHttpOptions());
+  // }
 
-  getHttpOptions(){
-    let token: string | undefined;
-    this.accountService.currentUser$.subscribe({
-      next: res => {
-        token = res?.token;
-      }
-    });
-    return {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      })
-    }
-  }
+  // getMember(username:string):Observable<Member>{
+  //   return this.http.get<Member>(`${this.baseUrl}users/${username}`, this.getHttpOptions());
+  // }
+
+  // getHttpOptions(){
+  //   let token: string | undefined;
+  //   this.accountService.currentUser$.subscribe({
+  //     next: res => {
+  //       token = res?.token;
+  //     }
+  //   });
+  //   return {
+  //     headers: new HttpHeaders({
+  //       Authorization: `Bearer ${token}`
+  //     })
+  //   }
+  // }
 }
