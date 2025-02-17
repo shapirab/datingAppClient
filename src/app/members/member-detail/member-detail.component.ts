@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery-9';
 import { Member } from 'src/app/models/member';
 import { MembersService } from 'src/app/services/members.service';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-member-detail',
@@ -12,9 +12,19 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 export class MemberDetailComponent implements OnInit {
 
   constructor(private memberService: MembersService, private route: ActivatedRoute) { }
-  member?: Member
+  member?: Member;
+  images: NgxGalleryImage[] = [];
+  galleryOptions: NgxGalleryOptions[] = [];
   ngOnInit(): void {
     this.loadMember();
+    this.galleryOptions = [
+      {
+        width: '600px',
+        height: '400px',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide
+      },
+    ];
   }
 
   loadMember(){
@@ -23,7 +33,15 @@ export class MemberDetailComponent implements OnInit {
       return;
     }
     this.memberService.getMember(username).subscribe({
-      next: member => this.member = member
+      next: member => {
+        this.member = member;
+        this.member.photos.map(photo => {
+          this.images.push(new NgxGalleryImage({
+            small: photo.url,
+            medium: photo.url
+          }));
+        });
+      }
     });
   }
 

@@ -21,7 +21,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
+import { NgxGalleryModule } from 'ngx-gallery-9';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +44,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    TabsModule
+    TabsModule,
+    NgxGalleryModule
   ],
   providers: [
     {
