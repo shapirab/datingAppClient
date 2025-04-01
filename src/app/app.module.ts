@@ -22,6 +22,10 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import {  NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+//In angular 19, on the app.config the command is importProvidersFrom(NgxSpinnerModule)
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,8 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
     FormsModule,
     SharedModule,
     TabsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
@@ -57,7 +63,12 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
