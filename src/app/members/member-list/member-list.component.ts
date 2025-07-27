@@ -10,10 +10,20 @@ import { MembersService } from 'src/app/services/members.service';
 export class MemberListComponent implements OnInit {
 
   members: Member[] = [];
-  constructor(private membersService: MembersService) { }
+  constructor(public membersService: MembersService) { }
 
   ngOnInit(): void {
-    this.loadMembers();
+    this.membersService.members$.subscribe({
+      next: members => {
+        if (members.length > 0) {
+          this.members = members;
+        }
+        else {
+          this.loadMembers();
+        }
+      },
+      error: err => console.log(err)
+    });
   }
 
   loadMembers(){
