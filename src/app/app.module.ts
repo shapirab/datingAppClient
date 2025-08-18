@@ -26,6 +26,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import {  NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { TextInputComponent } from './forms/text-input/text-input.component';
 //In angular 19, on the app.config the command is importProvidersFrom(NgxSpinnerModule)
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     ServerErrorComponent,
     MemberCardComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
