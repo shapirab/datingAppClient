@@ -27,7 +27,8 @@ import {  NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './forms/text-input/text-input.component';
-//In angular 19, on the app.config the command is importProvidersFrom(NgxSpinnerModule)
+import { DatePickerComponent } from './forms/date-picker/date-picker.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { TextInputComponent } from './forms/text-input/text-input.component';
     MemberCardComponent,
     MemberEditComponent,
     PhotoEditorComponent,
-    TextInputComponent
+    TextInputComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { TextInputComponent } from './forms/text-input/text-input.component';
     SharedModule,
     TabsModule,
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BsDatepickerModule
   ],
   providers: [
     {

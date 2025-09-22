@@ -12,7 +12,6 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
 
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
-    console.log('textInputComponent::constructor().', this)
    }
 
   writeValue(obj: any): void {}
